@@ -1,11 +1,11 @@
 from aiohttp.web_exceptions import HTTPForbidden, HTTPNotFound, HTTPUnauthorized
 from aiohttp_apispec import request_schema, response_schema, docs
 from aiohttp_session import new_session
-
 from app.admin.schemes import AdminSchemaIn, AdminSchemaOut
 from app.web.app import View
 from app.web.mixins import AuthRequiredMixin
 from app.web.utils import json_response
+
 
 
 class AdminLoginView(View):
@@ -23,6 +23,7 @@ class AdminLoginView(View):
         session['session_key'] = session_key
         data = AdminSchemaOut().dump(admin)
         return json_response(data=data)
+
 
 
 class AdminCurrentView(AuthRequiredMixin, View):
